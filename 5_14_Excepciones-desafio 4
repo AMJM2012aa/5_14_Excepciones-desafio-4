@@ -1,0 +1,19 @@
+class NegativeNumberError(Exception):
+    """Excepción personalizada para números negativos"""
+    def __init__(self, number):
+        self.number = number
+        super().__init__(f"El número {number} es negativo. No se puede calcular la raíz cuadrada de un número negativo.")
+
+def calcular_raiz_cuadrada(numero):
+    if numero < 0:
+        raise NegativeNumberError(numero)
+    else:
+        return numero**0.5
+
+if __name__ == "__main__":
+    try:
+        numero = float(input("Ingrese un número: "))
+        resultado = calcular_raiz_cuadrada(numero)
+        print("La raíz cuadrada de", numero, "es:", resultado)
+    except NegativeNumberError as e:
+        print(e)
